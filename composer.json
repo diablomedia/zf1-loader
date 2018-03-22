@@ -19,7 +19,13 @@
         "psr-0": {
             "Zend_": "src/"
         },
-        "exclude-from-classmap": ["/src/Zend/View/"]
+        "exclude-from-classmap": [
+            "/src/Zend/Auth/",
+            "/src/Zend/Db/",
+            "/src/Zend/View/",
+            "/src/Zend/Controller/",
+            "/src/Zend/VersionTest.php"
+        ]
     },
     "autoload-dev": {
         "psr-0": {
@@ -31,7 +37,14 @@
         "phpstan/phpstan": "^0.9.2"
     },
     "archive": {
-        "exclude": ["/tests", "/src/Zend/View"]
+        "exclude": [
+            "/tests",
+            "/src/Zend/Auth/",
+            "/src/Zend/Db/",
+            "/src/Zend/View",
+            "/src/Zend/Controller/",
+            "/src/Zend/VersionTest.php"
+        ]
     },
     "scripts": {
         "test": "phpunit ./tests",
