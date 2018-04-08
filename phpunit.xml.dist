@@ -13,6 +13,7 @@
         <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MAJOR" value="false" />
         <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR" value="false" />
         <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC" value="false" />
+        <includePath>./tests/</includePath>
     </php>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">

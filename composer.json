@@ -17,14 +17,10 @@
     },
     "autoload": {
         "psr-0": {
-            "Zend_": "src/"
+            "Zend_Loader_": "src/"
         },
-        "exclude-from-classmap": [
-            "/src/Zend/Auth/",
-            "/src/Zend/Db/",
-            "/src/Zend/View/",
-            "/src/Zend/Controller/",
-            "/src/Zend/VersionTest.php"
+        "classmap": [
+            "src/Zend/Loader.php"
         ]
     },
     "autoload-dev": {
@@ -36,14 +32,12 @@
         "phpunit/phpunit": "^6.0",
         "phpstan/phpstan": "^0.9.2"
     },
+    "include-path": [
+        "src/"
+    ],
     "archive": {
         "exclude": [
-            "/tests",
-            "/src/Zend/Auth/",
-            "/src/Zend/Db/",
-            "/src/Zend/View",
-            "/src/Zend/Controller/",
-            "/src/Zend/VersionTest.php"
+            "/tests"
         ]
     },
     "scripts": {
