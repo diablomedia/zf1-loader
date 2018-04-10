@@ -1,9 +1,4 @@
 parameters:
-    excludes_analyse:
-        - 'src/Zend/View/*'
-        - 'src/Zend/Db/*'
-        - 'src/Zend/Controller/*'
-        - 'src/Zend/VersionTest.php'
     ignoreErrors:
         - '#Result of static method Zend_Loader::loadClass\(\) \(void\) is used\.#'
         - '#Variable \$className might not be defined\.#'

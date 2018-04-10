@@ -49,6 +49,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
         Zend_Loader_PluginLoader::setIncludeFileCache(null);
         $this->_includeCache = dirname(__FILE__) . '/_files/includeCache.inc.php';
         $this->libPath = realpath(dirname(__FILE__) . '/../../../src');
+        $this->testLibPath = realpath(dirname(__FILE__) . '/../../../tests');
         $this->key = null;
     }
 
@@ -252,7 +253,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testLoadPluginNonStaticallyLoadsClass()
     {
         $loader = new Zend_Loader_PluginLoader();
-        $loader->addPrefixPath('Zend_View_Helper', $this->libPath . '/Zend/View/Helper');
+        $loader->addPrefixPath('Zend_View_Helper', $this->testLibPath . '/Zend/View/Helper');
         try {
             $className = $loader->load('FormButtonHelper');
         } catch (Exception $e) {
@@ -268,7 +269,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     {
         $this->key = 'foobar';
         $loader = new Zend_Loader_PluginLoader(array(), $this->key);
-        $loader->addPrefixPath('Zend_View_Helper', $this->libPath . '/Zend/View/Helper');
+        $loader->addPrefixPath('Zend_View_Helper', $this->testLibPath . '/Zend/View/Helper');
         try {
             $className = $loader->load('FormRadioHelper');
         } catch (Exception $e) {
@@ -303,7 +304,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testGetClassAfterNonStaticLoadReturnsResolvedClassName()
     {
         $loader = new Zend_Loader_PluginLoader();
-        $loader->addPrefixPath('Zend_View_Helper', $this->libPath . '/Zend/View/Helper');
+        $loader->addPrefixPath('Zend_View_Helper', $this->testLibPath . '/Zend/View/Helper');
         try {
             $className = $loader->load('FormSelectHelper');
         } catch (Exception $e) {
@@ -318,7 +319,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     {
         $this->key = 'foobar';
         $loader = new Zend_Loader_PluginLoader(array(), $this->key);
-        $loader->addPrefixPath('Zend_View_Helper', $this->libPath . '/Zend/View/Helper');
+        $loader->addPrefixPath('Zend_View_Helper', $this->testLibPath . '/Zend/View/Helper');
         try {
             $className = $loader->load('FormCheckboxHelper');
         } catch (Exception $e) {
@@ -350,7 +351,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testWin32UnderscoreSpacedShortNamesWillLoad()
     {
         $loader = new Zend_Loader_PluginLoader(array());
-        $loader->addPrefixPath('Zend_View_Filter', $this->libPath . '/Zend/View/Filter');
+        $loader->addPrefixPath('Zend_View_Filter', $this->testLibPath . '/Zend/View/Filter');
         try {
             // Plugin loader will attempt to load "c:\path\to\library/Zend/Filter/Word\UnderscoreToDash.php"
             $className = $loader->load('Word_UnderscoreToDash');
@@ -433,7 +434,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testClassFilesGrabCorrectPathForLoadedClasses()
     {
-        require_once __DIR__ . '/../../../src/Zend/View/Helper/DeclareVarsHelper.php';
+        require_once __DIR__ . '/../View/Helper/DeclareVarsHelper.php';
         $reflection = new ReflectionClass('Zend_View_Helper_DeclareVarsHelper');
         $expected   = $reflection->getFileName();
 

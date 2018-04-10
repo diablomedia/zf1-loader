@@ -454,6 +454,7 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8200
+     * @doesNotPerformAssertions
      */
     public function testLoadClassShouldAllowLoadingPhpNamespacedClasses()
     {
@@ -461,8 +462,6 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
             $this->markTestSkipped('PHP < 5.3.0 does not support namespaces');
         }
         Zend_Loader::loadClass('\Zfns\Foo', array(dirname(__FILE__) . '/Loader/_files'));
-
-        $this->assertTrue(true);
     }
 
     /**
