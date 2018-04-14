@@ -94,7 +94,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
             'Zend_Loader_Exception' => dirname(__FILE__) . '/../../../library/Zend/Loader/Exception.php',
         );
         $loader = new Zend_Loader_ClassMapAutoloader(array($map));
-        $test = $loader->getAutoloadMap();
+        $test   = $loader->getAutoloadMap();
         $this->assertSame($map, $test);
     }
 
@@ -115,7 +115,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
     public function testRegisteringMultipleMapsMergesThem()
     {
         $map = array(
-            'Zend_Loader_Exception' => dirname(__FILE__) . '/../../../library/Zend/Loader/Exception.php',
+            'Zend_Loader_Exception'              => dirname(__FILE__) . '/../../../library/Zend/Loader/Exception.php',
             'Zend_Loader_StandardAutoloaderTest' => 'some/bogus/path.php',
         );
         $this->loader->registerAutoloadMap($map);
@@ -130,7 +130,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
     public function testCanRegisterMultipleMapsAtOnce()
     {
         $map = array(
-            'Zend_Loader_Exception' => dirname(__FILE__) . '/../../../library/Zend/Loader/Exception.php',
+            'Zend_Loader_Exception'              => dirname(__FILE__) . '/../../../library/Zend/Loader/Exception.php',
             'Zend_Loader_StandardAutoloaderTest' => 'some/bogus/path.php',
         );
         $maps = array($map, dirname(__FILE__) . '/_files/goodmap.php');

@@ -157,7 +157,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
      */
     public function registerNamespace($namespace, $directory)
     {
-        $namespace = rtrim($namespace, self::NS_SEPARATOR). self::NS_SEPARATOR;
+        $namespace                    = rtrim($namespace, self::NS_SEPARATOR) . self::NS_SEPARATOR;
         $this->namespaces[$namespace] = $this->normalizeDirectory($directory);
         return $this;
     }
@@ -189,7 +189,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
      */
     public function registerPrefix($prefix, $directory)
     {
-        $prefix = rtrim($prefix, self::PREFIX_SEPARATOR). self::PREFIX_SEPARATOR;
+        $prefix                  = rtrim($prefix, self::PREFIX_SEPARATOR) . self::PREFIX_SEPARATOR;
         $this->prefixes[$prefix] = $this->normalizeDirectory($directory);
         return $this;
     }
@@ -358,5 +358,4 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
         $directory .= DIRECTORY_SEPARATOR;
         return $directory;
     }
-
 }

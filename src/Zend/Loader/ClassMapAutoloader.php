@@ -237,7 +237,7 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
         if ($value !== '...') {
             return;
         }
-        unset($parts[$key], $parts[$key-1]);
+        unset($parts[$key], $parts[$key - 1]);
         $parts = array_values($parts);
     }
 }

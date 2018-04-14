@@ -48,9 +48,9 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
         }
         Zend_Loader_PluginLoader::setIncludeFileCache(null);
         $this->_includeCache = dirname(__FILE__) . '/_files/includeCache.inc.php';
-        $this->libPath = realpath(dirname(__FILE__) . '/../../../src');
-        $this->testLibPath = realpath(dirname(__FILE__) . '/../../../tests');
-        $this->key = null;
+        $this->libPath       = realpath(dirname(__FILE__) . '/../../../src');
+        $this->testLibPath   = realpath(dirname(__FILE__) . '/../../../tests');
+        $this->key           = null;
     }
 
     /**
@@ -104,7 +104,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testAddPrefixPathStatically()
     {
         $this->key = 'foobar';
-        $loader = new Zend_Loader_PluginLoader(array(), $this->key);
+        $loader    = new Zend_Loader_PluginLoader(array(), $this->key);
         $loader->addPrefixPath('Zend_View', $this->libPath . '/Zend/View')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend/Loader')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend');
@@ -149,7 +149,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testRemoveAllPathsForGivenPrefixStatically()
     {
         $this->key = 'foobar';
-        $loader = new Zend_Loader_PluginLoader(array(), $this->key);
+        $loader    = new Zend_Loader_PluginLoader(array(), $this->key);
         $loader->addPrefixPath('Zend_View', $this->libPath . '/Zend/View')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend/Loader')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend');
@@ -197,7 +197,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testClearPathsStaticallyClearsPathArray()
     {
         $this->key = 'foobar';
-        $loader = new Zend_Loader_PluginLoader(array(), $this->key);
+        $loader    = new Zend_Loader_PluginLoader(array(), $this->key);
         $loader->addPrefixPath('Zend_View', $this->libPath . '/Zend/View')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend/Loader')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend');
@@ -224,7 +224,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testClearPathsWithPrefixStaticallyClearsPathArray()
     {
         $this->key = 'foobar';
-        $loader = new Zend_Loader_PluginLoader(array(), $this->key);
+        $loader    = new Zend_Loader_PluginLoader(array(), $this->key);
         $loader->addPrefixPath('Zend_View', $this->libPath . '/Zend/View')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend/Loader')
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend');
@@ -245,7 +245,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testGetClassNameStaticallyReturnsFalseWhenClassNotLoaded()
     {
         $this->key = 'foobar';
-        $loader = new Zend_Loader_PluginLoader(array(), $this->key);
+        $loader    = new Zend_Loader_PluginLoader(array(), $this->key);
         $loader->addPrefixPath('Zend_View_Helper', $this->libPath . '/Zend/View/Helper');
         $this->assertFalse($loader->getClassName('FormElement'));
     }
@@ -258,7 +258,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $className = $loader->load('FormButtonHelper');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertEquals('Zend_View_Helper_FormButtonHelper', $className);
         $this->assertTrue(class_exists('Zend_View_Helper_FormButtonHelper', false));
@@ -268,13 +268,13 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testLoadPluginStaticallyLoadsClass()
     {
         $this->key = 'foobar';
-        $loader = new Zend_Loader_PluginLoader(array(), $this->key);
+        $loader    = new Zend_Loader_PluginLoader(array(), $this->key);
         $loader->addPrefixPath('Zend_View_Helper', $this->testLibPath . '/Zend/View/Helper');
         try {
             $className = $loader->load('FormRadioHelper');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertEquals('Zend_View_Helper_FormRadioHelper', $className);
         $this->assertTrue(class_exists('Zend_View_Helper_FormRadioHelper', false));
@@ -309,7 +309,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $className = $loader->load('FormSelectHelper');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertEquals($className, $loader->getClassName('FormSelectHelper'));
         $this->assertEquals('Zend_View_Helper_FormSelectHelper', $loader->getClassName('FormSelectHelper'));
@@ -318,13 +318,13 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
     public function testGetClassAfterStaticLoadReturnsResolvedClassName()
     {
         $this->key = 'foobar';
-        $loader = new Zend_Loader_PluginLoader(array(), $this->key);
+        $loader    = new Zend_Loader_PluginLoader(array(), $this->key);
         $loader->addPrefixPath('Zend_View_Helper', $this->testLibPath . '/Zend/View/Helper');
         try {
             $className = $loader->load('FormCheckboxHelper');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertEquals($className, $loader->getClassName('FormCheckboxHelper'));
         $this->assertEquals('Zend_View_Helper_FormCheckboxHelper', $loader->getClassName('FormCheckboxHelper'));
@@ -339,7 +339,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $className = $loader->load('FormSubmit');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertEquals($className, $loader->getClassName('FormSubmit'));
         $this->assertEquals('ZfTest_FormSubmit', $loader->getClassName('FormSubmit'));
@@ -357,7 +357,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $className = $loader->load('Word_UnderscoreToDash');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertEquals($className, $loader->getClassName('Word_UnderscoreToDash'));
     }
@@ -408,7 +408,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $className = $loader->load('CacheTestFile');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertFileExists($cacheFile);
         $cache = file_get_contents($cacheFile);
@@ -420,12 +420,12 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testStaticRegistryNamePersistsInDifferentLoaderObjects()
     {
-        $loader1 = new Zend_Loader_PluginLoader(array(), "PluginLoaderStaticNamespace");
-        $loader1->addPrefixPath("Zend_View_Helper", "Zend/View/Helper");
+        $loader1 = new Zend_Loader_PluginLoader(array(), 'PluginLoaderStaticNamespace');
+        $loader1->addPrefixPath('Zend_View_Helper', 'Zend/View/Helper');
 
-        $loader2 = new Zend_Loader_PluginLoader(array(), "PluginLoaderStaticNamespace");
+        $loader2 = new Zend_Loader_PluginLoader(array(), 'PluginLoaderStaticNamespace');
         $this->assertEquals(array(
-            "Zend_View_Helper_" => array("Zend/View/Helper/"),
+            'Zend_View_Helper_' => array('Zend/View/Helper/'),
         ), $loader2->getPaths());
     }
 
@@ -446,7 +446,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $className = $loader->load('DeclareVarsHelper');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
 
         $classPath = $loader->getClassPath('DeclareVarsHelper');
@@ -468,7 +468,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $className = $loader->load('Foo');
         } catch (Exception $e) {
             $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
+            $this->fail(sprintf('Failed loading helper; paths: %s', var_export($paths, 1)));
         }
         $this->assertEquals('Zfns\\Foo', $className);
         $this->assertEquals('Zfns\\Foo', $loader->getClassName('Foo'));
@@ -504,7 +504,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
         try {
             $className = $loader->load('Foo\\Bar');
         } catch (Exception $e) {
-            $this->fail(sprintf("Failed loading helper with backslashes in name"));
+            $this->fail(sprintf('Failed loading helper with backslashes in name'));
         }
         $this->assertEquals('Zfns\\Foo\\Bar', $className);
     }
@@ -525,7 +525,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
         try {
             $className = $loader->load('Demo');
         } catch (Exception $e) {
-            $this->fail(sprintf("Failed loading helper with backslashes and underscores in name"));
+            $this->fail(sprintf('Failed loading helper with backslashes and underscores in name'));
         }
 
         $this->assertEquals('Zfns\Foo_Demo', $className);

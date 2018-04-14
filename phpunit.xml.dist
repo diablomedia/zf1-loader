@@ -15,6 +15,11 @@
         <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC" value="false" />
         <includePath>./tests/</includePath>
     </php>
+    <testsuites>
+        <testsuite name="default">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>

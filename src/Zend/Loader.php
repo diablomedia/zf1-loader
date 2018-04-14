@@ -71,7 +71,7 @@ class Zend_Loader
                 if ($dir == '.') {
                     $dirs[$key] = $dirPath;
                 } else {
-                    $dir = rtrim($dir, '\\/');
+                    $dir        = rtrim($dir, '\\/');
                     $dirs[$key] = $dir . DIRECTORY_SEPARATOR . $dirPath;
                 }
             }
@@ -330,15 +330,15 @@ class Zend_Loader
      */
     public static function standardiseFile($file)
     {
-        $fileName = ltrim($file, '\\');
+        $fileName  = ltrim($file, '\\');
         $file      = '';
         $namespace = '';
         if ($lastNsPos = strripos($fileName, '\\')) {
             $namespace = substr($fileName, 0, $lastNsPos);
-            $fileName = substr($fileName, $lastNsPos + 1);
+            $fileName  = substr($fileName, $lastNsPos + 1);
             $file      = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
         $file .= str_replace('_', DIRECTORY_SEPARATOR, $fileName) . '.php';
-        return $file;    
+        return $file;
     }
 }

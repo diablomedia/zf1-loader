@@ -86,7 +86,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
     public function testAutoloaderShouldRegisterItselfWithSplAutoloader()
     {
         $autoloaders = spl_autoload_functions();
-        $found = false;
+        $found       = false;
         foreach ($autoloaders as $loader) {
             if (is_array($loader)) {
                 if (('autoload' == $loader[1]) && ($loader[0] === get_class($this->autoloader))) {
@@ -204,7 +204,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $this->autoloader->unshiftAutoloader('require');
         $autoloaders = $this->autoloader->getAutoloaders();
-        $test = array_shift($autoloaders);
+        $test        = array_shift($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -212,7 +212,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $this->autoloader->unshiftAutoloader('require');
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('');
-        $test = array_shift($autoloaders);
+        $test        = array_shift($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -220,7 +220,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $this->autoloader->unshiftAutoloader('require', 'Foo');
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('Foo');
-        $test = array_shift($autoloaders);
+        $test        = array_shift($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -229,11 +229,11 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
         $this->autoloader->unshiftAutoloader('require', array('Foo', 'Bar'));
 
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('Foo');
-        $test = array_shift($autoloaders);
+        $test        = array_shift($autoloaders);
         $this->assertEquals('require', $test);
 
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('Bar');
-        $test = array_shift($autoloaders);
+        $test        = array_shift($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -241,7 +241,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $this->autoloader->pushAutoloader('require');
         $autoloaders = $this->autoloader->getAutoloaders();
-        $test = array_pop($autoloaders);
+        $test        = array_pop($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -249,7 +249,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $this->autoloader->pushAutoloader('require');
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('');
-        $test = array_pop($autoloaders);
+        $test        = array_pop($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -257,7 +257,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $this->autoloader->pushAutoloader('require', 'Foo');
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('Foo');
-        $test = array_pop($autoloaders);
+        $test        = array_pop($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -266,11 +266,11 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
         $this->autoloader->pushAutoloader('require', array('Foo', 'Bar'));
 
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('Foo');
-        $test = array_pop($autoloaders);
+        $test        = array_pop($autoloaders);
         $this->assertEquals('require', $test);
 
         $autoloaders = $this->autoloader->getNamespaceAutoloaders('Bar');
-        $test = array_pop($autoloaders);
+        $test        = array_pop($autoloaders);
         $this->assertEquals('require', $test);
     }
 
@@ -402,7 +402,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
         $class = 'Level1_Level2_Foo';
         $als   = $this->autoloader->getClassAutoloaders($class);
         $this->assertEquals(1, count($als));
-        $al    = array_shift($als);
+        $al = array_shift($als);
         $this->assertEquals(array($this, 'autoloadSecondLevel'), $al);
     }
 
@@ -415,7 +415,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
              ->pushAutoloader('autoloadOne')
              ->pushAutoloader('autoloadSecond');
 
-        $class = 'Zend_Autoloader_Test';
+        $class       = 'Zend_Autoloader_Test';
         $autoloaders = $this->autoloader->getClassAutoloaders($class);
         $this->assertEquals(3, count($autoloaders));
     }

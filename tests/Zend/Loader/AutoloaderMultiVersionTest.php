@@ -200,7 +200,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends PHPUnit\Framework\TestCase
                 $value = array_shift($parts);
                 break;
             case 'minor':
-                $value  = array_shift($parts);
+                $value = array_shift($parts);
                 $value .= '.' . array_shift($parts);
                 break;
         }

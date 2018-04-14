@@ -1,4 +1,7 @@
 parameters:
+    excludes_analyse:
+        - %rootDir%/../../../tests/*
+        - %rootDir%/../../../vendor/*
     ignoreErrors:
         - '#Result of static method Zend_Loader::loadClass\(\) \(void\) is used\.#'
         - '#Variable \$className might not be defined\.#'

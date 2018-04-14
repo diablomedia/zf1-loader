@@ -28,5 +28,4 @@
  */
 interface Zend_Controller_DispatcherTest_Interface
 {
-
 }

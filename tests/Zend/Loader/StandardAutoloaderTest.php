@@ -82,7 +82,7 @@ class Zend_Loader_StandardAutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $loader = new Zend_Loader_StandardAutoloader();
 
-        $obj  = new stdClass();
+        $obj = new stdClass();
         foreach (array(true, 'foo', $obj) as $arg) {
             try {
                 $loader->setOptions(true);
@@ -97,10 +97,10 @@ class Zend_Loader_StandardAutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $options = array(
             'namespaces' => array(
-                'Zend\\'   => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
+                'Zend\\' => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
             ),
-            'prefixes'   => array(
-                'Zend_'  => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
+            'prefixes' => array(
+                'Zend_' => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
             ),
             'fallback_autoloader' => true,
         );
@@ -120,8 +120,8 @@ class Zend_Loader_StandardAutoloaderTest extends PHPUnit\Framework\TestCase
             'Zend_' => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
         ));
         $options = new ArrayObject(array(
-            'namespaces' => $namespaces,
-            'prefixes'   => $prefixes,
+            'namespaces'          => $namespaces,
+            'prefixes'            => $prefixes,
             'fallback_autoloader' => true,
         ));
         $loader = new Zend_Loader_TestAsset_StandardAutoloader();
@@ -196,16 +196,16 @@ class Zend_Loader_StandardAutoloaderTest extends PHPUnit\Framework\TestCase
 
     public function testZendFrameworkPrefixIsNotLoadedByDefault()
     {
-        $loader = new Zend_Loader_StandardAutoloader();
+        $loader   = new Zend_Loader_StandardAutoloader();
         $expected = array();
         $this->assertAttributeEquals($expected, 'prefixes', $loader);
     }
 
     public function testCanTellAutoloaderToRegisterZfPrefixAtInstantiation()
     {
-        $loader = new Zend_Loader_StandardAutoloader(array('autoregister_zf' => true));
-        $r      = new ReflectionClass($loader);
-        $file   = $r->getFileName();
+        $loader   = new Zend_Loader_StandardAutoloader(array('autoregister_zf' => true));
+        $r        = new ReflectionClass($loader);
+        $file     = $r->getFileName();
         $expected = array('Zend_' => dirname(dirname($file)) . DIRECTORY_SEPARATOR);
         $this->assertAttributeEquals($expected, 'prefixes', $loader);
     }

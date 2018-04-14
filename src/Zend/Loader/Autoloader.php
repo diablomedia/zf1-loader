@@ -333,7 +333,7 @@ class Zend_Loader_Autoloader
             }
             if (0 === strpos($class, $ns)) {
                 if ((false === $namespace) || (strlen($ns) > strlen($namespace))) {
-                    $namespace = $ns;
+                    $namespace   = $ns;
                     $autoloaders = $this->getNamespaceAutoloaders($ns);
                 }
             }
@@ -490,7 +490,7 @@ class Zend_Loader_Autoloader
      */
     protected function _setNamespaceAutoloaders(array $autoloaders, $namespace = '')
     {
-        $namespace = (string) $namespace;
+        $namespace                               = (string) $namespace;
         $this->_namespaceAutoloaders[$namespace] = $autoloaders;
         return $this;
     }

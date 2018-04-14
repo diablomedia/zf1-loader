@@ -4,4 +4,3 @@ namespace Zfns\Foo;
 class Bar
 {
 }
-

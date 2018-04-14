@@ -28,6 +28,6 @@ namespace ZendTest\Loader\TestAsset\TestPlugins;
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
-class ZendTest_Loader_TestAsset_TestPlugins_Baz
+class Baz
 {
 }

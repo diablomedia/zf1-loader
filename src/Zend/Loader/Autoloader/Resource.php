@@ -114,12 +114,12 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
     public function __call($method, $args)
     {
         if ('get' == substr($method, 0, 3)) {
-            $type  = strtolower(substr($method, 3));
+            $type = strtolower(substr($method, 3));
             if (!$this->hasResourceType($type)) {
                 throw new Zend_Loader_Exception("Invalid resource type $type; cannot load resource");
             }
             if (empty($args)) {
-                throw new Zend_Loader_Exception("Cannot load resources; no resource specified");
+                throw new Zend_Loader_Exception('Cannot load resources; no resource specified');
             }
             $resource = array_shift($args);
             return $this->load($resource, $type);
@@ -141,7 +141,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
         $namespace         = '';
 
         if (!empty($namespaceTopLevel)) {
-            $namespace = array();
+            $namespace        = array();
             $topLevelSegments = count(explode('_', $namespaceTopLevel));
             for ($i = 0; $i < $topLevelSegments; $i++) {
                 $namespace[] = array_shift($segments);
@@ -162,7 +162,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
         $component = $namespace;
         $lastMatch = false;
         do {
-            $segment    = array_shift($segments);
+            $segment = array_shift($segments);
             $component .= empty($component) ? $segment : '_' . $segment;
             if (isset($this->_components[$component])) {
                 $lastMatch = $component;
@@ -173,8 +173,8 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
             return false;
         }
 
-        $final = substr($class, strlen($lastMatch) + 1);
-        $path = $this->_components[$lastMatch];
+        $final     = substr($class, strlen($lastMatch) + 1);
+        $path      = $this->_components[$lastMatch];
         $classPath = $path . '/' . str_replace('_', '/', $final) . '.php';
 
         if (Zend_Loader::isReadable($classPath)) {
@@ -282,8 +282,8 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
             if (null === $namespace) {
                 throw new Zend_Loader_Exception('Initial definition of a resource type must include a namespace');
             }
-            $namespaceTopLevel = $this->getNamespace();
-            $namespace = ucfirst(trim($namespace, '_'));
+            $namespaceTopLevel           = $this->getNamespace();
+            $namespace                   = ucfirst(trim($namespace, '_'));
             $this->_resourceTypes[$type] = array(
                 'namespace' => empty($namespaceTopLevel) ? $namespace : $namespaceTopLevel . '_' . $namespace,
             );
@@ -293,7 +293,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
         }
         $this->_resourceTypes[$type]['path'] = $this->getBasePath() . '/' . rtrim($path, '\/');
 
-        $component = $this->_resourceTypes[$type]['namespace'];
+        $component                     = $this->_resourceTypes[$type]['namespace'];
         $this->_components[$component] = $this->_resourceTypes[$type]['path'];
         return $this;
     }
@@ -333,7 +333,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
             if (!isset($spec['path'])) {
                 throw new Zend_Loader_Exception('addResourceTypes() expects each array to include a paths element');
             }
-            $paths  = $spec['path'];
+            $paths     = $spec['path'];
             $namespace = null;
             if (isset($spec['namespace'])) {
                 $namespace = $spec['namespace'];

@@ -5,5 +5,4 @@
  */
 class Zend_View_Filter_Word_UnderscoreToDash
 {
-
 }

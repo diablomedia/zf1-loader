@@ -28,5 +28,4 @@
  */
 class Zend_Controller_FrontTest
 {
-
 }

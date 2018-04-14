@@ -29,5 +29,4 @@
  */
 interface Zend_Auth_Storage_InterfaceTest
 {
-
 }

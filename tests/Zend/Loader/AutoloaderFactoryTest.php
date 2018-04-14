@@ -91,7 +91,7 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
             ),
         ));
         $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader('Zend_Loader_ClassMapAutoloader');
-        $map = $loader->getAutoloadMap();
+        $map    = $loader->getAutoloadMap();
         $this->assertInternalType('array', $map);
         $this->assertEquals(2, count($map));
     }
@@ -202,7 +202,7 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
 
     public function testCannotBeInstantiatedViaConstructor()
     {
-        $reflection = new ReflectionClass('Zend_Loader_AutoloaderFactory');
+        $reflection  = new ReflectionClass('Zend_Loader_AutoloaderFactory');
         $constructor = $reflection->getConstructor();
         $this->assertNull($constructor);
     }

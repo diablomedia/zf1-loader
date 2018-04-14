@@ -18,7 +18,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-if (interface_exists('Zend_Loader_SplAutoloader')) return;
+if (interface_exists('Zend_Loader_SplAutoloader')) {
+    return;
+}
 
 /**
  * Defines an interface for classes that may register with the spl_autoload

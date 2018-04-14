@@ -19,7 +19,9 @@
  */
 
 
-if (class_exists('Zend_Loader_AutoloaderFactory')) return;
+if (class_exists('Zend_Loader_AutoloaderFactory')) {
+    return;
+}
 
 /**
  * @package    Zend_Loader
@@ -93,7 +95,8 @@ abstract class Zend_Loader_AutoloaderFactory
                     if (!class_exists(self::CLASS_MAP_AUTOLOADER)) {
                         // Extract the filename from the classname
                         $classMapLoader = substr(
-                            strrchr(self::CLASS_MAP_AUTOLOADER, '_'), 1
+                            strrchr(self::CLASS_MAP_AUTOLOADER, '_'),
+                            1
                         );
 
                         require_once dirname(__FILE__) . "/$classMapLoader.php";
@@ -112,7 +115,7 @@ abstract class Zend_Loader_AutoloaderFactory
                 // unfortunately is_subclass_of is broken on some 5.3 versions
                 // additionally instanceof is also broken for this use case
                 if (version_compare(PHP_VERSION, '5.3.7', '>=')) {
-                        if (!is_subclass_of($class, 'Zend_Loader_SplAutoloader')) {
+                    if (!is_subclass_of($class, 'Zend_Loader_SplAutoloader')) {
                         throw new Zend_Loader_Exception_InvalidArgumentException(sprintf(
                             'Autoloader class %s must implement Zend\\Loader\\SplAutoloader',
                             $class
@@ -213,7 +216,7 @@ abstract class Zend_Loader_AutoloaderFactory
         if (!class_exists(self::STANDARD_AUTOLOADER)) {
             require_once dirname(__FILE__) . "/$stdAutoloader.php";
         }
-        $loader = new Zend_Loader_StandardAutoloader();
+        $loader                   = new Zend_Loader_StandardAutoloader();
         self::$standardAutoloader = $loader;
         return self::$standardAutoloader;
     }

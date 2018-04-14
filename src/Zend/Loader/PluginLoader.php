@@ -98,14 +98,14 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
      * @param array $prefixToPaths
      * @param string $staticRegistryName OPTIONAL
      */
-    public function __construct(Array $prefixToPaths = array(), $staticRegistryName = null)
+    public function __construct(array $prefixToPaths = array(), $staticRegistryName = null)
     {
         if (is_string($staticRegistryName) && !empty($staticRegistryName)) {
             $this->_useStaticRegistry = $staticRegistryName;
-            if(!isset(self::$_staticPrefixToPaths[$staticRegistryName])) {
+            if (!isset(self::$_staticPrefixToPaths[$staticRegistryName])) {
                 self::$_staticPrefixToPaths[$staticRegistryName] = array();
             }
-            if(!isset(self::$_staticLoadedPlugins[$staticRegistryName])) {
+            if (!isset(self::$_staticLoadedPlugins[$staticRegistryName])) {
                 self::$_staticLoadedPlugins[$staticRegistryName] = array();
             }
         }
@@ -123,15 +123,15 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
      */
     protected function _formatPrefix($prefix)
     {
-        if($prefix == "") {
+        if ($prefix == '') {
             return $prefix;
         }
 
         $nsSeparator = (false !== strpos($prefix, '\\'))?'\\':'_';
-        $prefix = rtrim($prefix, $nsSeparator) . $nsSeparator;
+        $prefix      = rtrim($prefix, $nsSeparator) . $nsSeparator;
         //if $nsSeprator == "\" and the prefix ends in "_\" remove trailing \
         //https://github.com/zendframework/zf1/issues/152
-        if(($nsSeparator == "\\") && (substr($prefix,-2) == "_\\")) {
+        if (($nsSeparator == '\\') && (substr($prefix, -2) == '_\\')) {
             $prefix = substr($prefix, 0, -1);
         }
         return $prefix;
@@ -245,9 +245,9 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
     {
         $prefix = $this->_formatPrefix($prefix);
         if ($this->_useStaticRegistry) {
-            $registry =& self::$_staticPrefixToPaths[$this->_useStaticRegistry];
+            $registry = & self::$_staticPrefixToPaths[$this->_useStaticRegistry];
         } else {
-            $registry =& $this->_prefixToPaths;
+            $registry = & $this->_prefixToPaths;
         }
 
         if (!isset($registry[$prefix])) {
@@ -369,14 +369,14 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
             $registry = $this->_prefixToPaths;
         }
 
-        $registry  = array_reverse($registry, true);
-        $found     = false;
+        $registry = array_reverse($registry, true);
+        $found    = false;
         if (false !== strpos($name, '\\')) {
             $classFile = str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
         } else {
             $classFile = str_replace('_', DIRECTORY_SEPARATOR, $name) . '.php';
         }
-        $incFile   = self::getIncludeFileCache();
+        $incFile = self::getIncludeFileCache();
         foreach ($registry as $prefix => $paths) {
             $className = $prefix . $name;
 
@@ -385,7 +385,7 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
                 break;
             }
 
-            $paths     = array_reverse($paths, true);
+            $paths = array_reverse($paths, true);
 
             foreach ($paths as $path) {
                 $loadFile = $path . $classFile;
@@ -412,12 +412,12 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
                 $message .= "\n$prefix: " . implode(PATH_SEPARATOR, $paths);
             }
             throw new Zend_Loader_PluginLoader_Exception($message);
-       }
+        }
 
         if ($this->_useStaticRegistry) {
-            self::$_staticLoadedPlugins[$this->_useStaticRegistry][$name]     = $className;
+            self::$_staticLoadedPlugins[$this->_useStaticRegistry][$name] = $className;
         } else {
-            $this->_loadedPlugins[$name]     = $className;
+            $this->_loadedPlugins[$name] = $className;
         }
         return $className;
     }

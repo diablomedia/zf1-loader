@@ -273,7 +273,7 @@ class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
         ));
         $object = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
         $this->assertTrue($object instanceof FooBar_Form_ZendLoaderAutoloaderResourceTest);
-        $test   = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
+        $test = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
         $this->assertSame($object, $test);
     }
 
@@ -343,7 +343,7 @@ class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
      */
     public function testAutoloaderShouldReceiveNamespaceWithTrailingUnderscore()
     {
-        $al = Zend_Loader_Autoloader::getInstance();
+        $al      = Zend_Loader_Autoloader::getInstance();
         $loaders = $al->getNamespaceAutoloaders('FooBar');
         $this->assertEmpty($loaders);
         $loaders = $al->getNamespaceAutoloaders('FooBar_');
@@ -402,7 +402,7 @@ class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
                     'namespace' => 'Acl',
                 )
             ),
-            'namespace'     => 'My'
+            'namespace' => 'My'
         );
         $loader1 = new Zend_Loader_Autoloader_Resource($data);
 
