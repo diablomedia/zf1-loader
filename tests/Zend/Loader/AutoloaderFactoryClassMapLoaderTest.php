@@ -93,6 +93,6 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends PHPUnit\Framework\
         );
         $map = $loader->getAutoloadMap();
         $this->assertInternalType('array', $map);
-        $this->assertEquals(2, count($map));
+        $this->assertCount(2, $map);
     }
 }

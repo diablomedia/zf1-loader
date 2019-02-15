@@ -103,13 +103,13 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
         $this->loader->registerAutoloadMap(dirname(__FILE__) . '/_files/goodmap.php');
         $map = $this->loader->getAutoloadMap();
         $this->assertInternalType('array', $map);
-        $this->assertEquals(2, count($map));
+        $this->assertCount(2, $map);
         // Just to make sure nothing changes after loading the same map again
         // (loadMapFromFile should just return)
         $this->loader->registerAutoloadMap(dirname(__FILE__) . '/_files/goodmap.php');
         $map = $this->loader->getAutoloadMap();
         $this->assertInternalType('array', $map);
-        $this->assertEquals(2, count($map));
+        $this->assertCount(2, $map);
     }
 
     public function testRegisteringMultipleMapsMergesThem()
@@ -123,7 +123,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
 
         $test = $this->loader->getAutoloadMap();
         $this->assertInternalType('array', $test);
-        $this->assertEquals(3, count($test));
+        $this->assertCount(3, $test);
         $this->assertNotEquals($map['Zend_Loader_StandardAutoloaderTest'], $test['Zend_Loader_StandardAutoloaderTest']);
     }
 
@@ -137,7 +137,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
         $this->loader->registerAutoloadMaps($maps);
         $test = $this->loader->getAutoloadMap();
         $this->assertInternalType('array', $test);
-        $this->assertEquals(3, count($test));
+        $this->assertCount(3, $test);
     }
 
     public function testRegisterMapsThrowsExceptionForNonTraversableArguments()
@@ -194,13 +194,13 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
         $this->loader->autoload('some_loadedclass');
         $this->assertTrue(class_exists('some_loadedclass', false));
         $test = $this->loader->getAutoloadMap();
-        $this->assertEquals(2, count($test));
+        $this->assertCount(2, $test);
 
         // will not register duplicate, even with a different relative path
         $map = 'phar://' . __DIR__ . '/_files/classmap.phar/test/./foo/../../autoload_classmap.php';
         $this->loader->registerAutoloadMap($map);
         $test = $this->loader->getAutoloadMap();
-        $this->assertEquals(2, count($test));
+        $this->assertCount(2, $test);
     }
 
     public function testCanLoadNamespacedClassFromPhar()

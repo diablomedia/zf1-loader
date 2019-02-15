@@ -401,7 +401,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
                          ->pushAutoloader(array($this, 'autoloadSecondLevel'), 'Level1_Level2');
         $class = 'Level1_Level2_Foo';
         $als   = $this->autoloader->getClassAutoloaders($class);
-        $this->assertEquals(1, count($als));
+        $this->assertCount(1, $als);
         $al = array_shift($als);
         $this->assertEquals(array($this, 'autoloadSecondLevel'), $al);
     }
@@ -417,7 +417,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
 
         $class       = 'Zend_Autoloader_Test';
         $autoloaders = $this->autoloader->getClassAutoloaders($class);
-        $this->assertEquals(3, count($autoloaders));
+        $this->assertCount(3, $autoloaders);
     }
 
     public function addTestIncludePath()

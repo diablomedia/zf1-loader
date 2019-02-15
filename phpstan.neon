@@ -1,10 +1,9 @@
 parameters:
+    level: 3
+    paths:
+        - ./
     excludes_analyse:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     ignoreErrors:
-        - '#Result of static method Zend_Loader::loadClass\(\) \(void\) is used\.#'
         - '#Variable \$className might not be defined\.#'
-        - '#Casting to .+ something that.s already .+\.#'
-        - '#Strict comparison using === between null and string will always evaluate to false\.#'
-        - '#Parameter \#1 \$type of method Zend_Loader_Autoloader_Resource::hasResourceType\(\) expects string, string\|null given.#'

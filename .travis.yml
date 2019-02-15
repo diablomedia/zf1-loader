@@ -2,24 +2,17 @@ language: php
 
 sudo: false
 
-php:
-  - 7
-  - 7.1
-  - 7.2
-  - nightly
-
-env: TMPDIR=/tmp USE_XDEBUG=false
+env:
+  global:
+    - COMPOSER_ARGS="" TMPDIR=/tmp USE_XDEBUG=false
 
 branches:
   only:
     master
 
-before_install:
-  - travis_retry composer self-update
-
 install:
   - phpenv rehash
-  - travis_retry composer install --no-interaction --prefer-source
+  - travis_retry composer update --no-interaction --prefer-source $COMPOSER_ARGS
 
 stages:
   - test
@@ -36,20 +29,39 @@ script:
 jobs:
   fast_finish: true
   allow_failures:
+    - php: 7.4snapshot
     - php: nightly
   include:
+    - php: 7.1
+      env: COMPOSER_ARGS="--prefer-lowest"
+    - php: 7.1
+    - php: 7.2
+      env: COMPOSER_ARGS="--prefer-lowest"
+    - php: 7.2
+    - php: 7.3
+      env: COMPOSER_ARGS="--prefer-lowest"
+    - php: 7.3
+    - php: 7.4snapshot
+      env: COMPOSER_ARGS="--ignore-platform-reqs --prefer-lowest"
+    - php: 7.4snapshot
+      env: COMPOSER_ARGS="--ignore-platform-reqs"
+    - php: nightly
+      env: COMPOSER_ARGS="--ignore-platform-reqs --prefer-lowest"
+    - php: nightly
+      env: COMPOSER_ARGS="--ignore-platform-reqs"
+      
     - stage: style check
-      php: 7.1
+      php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=false
       script:
         - composer style-check
     - stage: phpstan analysis
-      php: 7.1
+      php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=false
       script:
         - composer phpstan
     - stage: test with coverage
-      php: 7.1
+      php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=true CC_TEST_REPORTER_ID=8117784b47622b56c04abaa23f9f2ccd4bdaac4077624da7f3fdb4fc24d186d4
       before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
