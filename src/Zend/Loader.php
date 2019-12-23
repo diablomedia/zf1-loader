@@ -314,6 +314,8 @@ class Zend_Loader
                 return include $absPath;
             }
         }
+
+        return false;
     }
 
     /**

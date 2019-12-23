@@ -211,6 +211,8 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
         if (file_exists($realPath = 'phar:///' . implode('/', $parts))) {
             return $realPath;
         }
+
+        return null;
     }
 
     /**
