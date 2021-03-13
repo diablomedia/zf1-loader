@@ -41,7 +41,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (file_exists($this->_includeCache)) {
             unlink($this->_includeCache);
@@ -59,7 +59,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->clearStaticPaths();
         Zend_Loader_PluginLoader::setIncludeFileCache(null);
@@ -97,7 +97,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
                ->addPrefixPath('Zend_Loader', $this->libPath . '/Zend/Loader');
         $paths = $loader->getPaths();
 
-        $this->assertInternalType('array', $paths);
+        $this->assertIsArray($paths);
         $this->assertCount(1, $paths['Zend_Loader_']);
     }
 
@@ -412,7 +412,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
         }
         $this->assertFileExists($cacheFile);
         $cache = file_get_contents($cacheFile);
-        $this->assertContains('CacheTestFile.php', $cache);
+        $this->assertStringContainsString('CacheTestFile.php', $cache);
     }
 
     /**
@@ -450,7 +450,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
         }
 
         $classPath = $loader->getClassPath('DeclareVarsHelper');
-        $this->assertContains($expected, $classPath);
+        $this->assertStringContainsString($expected, $classPath);
     }
 
     /**
@@ -485,7 +485,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Loader_PluginLoader_Exception);
-            $this->assertContains('Prefix My_Namespace_ / Path ZF9721', $e->getMessage());
+            $this->assertStringContainsString('Prefix My_Namespace_ / Path ZF9721', $e->getMessage());
         }
         $this->assertCount(1, $loader->getPaths('My_Namespace_'));
     }

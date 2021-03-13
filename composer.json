@@ -10,7 +10,7 @@
     "license": "BSD-3-Clause",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.0.0",
+        "php": "^7.0 || ^8.0",
         "diablomedia/zendframework1-exception": "^1.0.0",
         "diablomedia/zendframework1-config": "^1.0.0 || ^2.0.0"
     },
@@ -28,11 +28,11 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0",
-        "phpstan/phpstan": "0.12.50",
-        "friendsofphp/php-cs-fixer": "2.16.4",
+        "phpunit/phpunit": "^8.0",
+        "phpstan/phpstan": "0.12.81",
+        "friendsofphp/php-cs-fixer": "2.18.3",
         "maglnet/composer-require-checker": "^1.1.0 || ^2.0.0",
-        "phpro/grumphp": "^0.16.0"
+        "phpro/grumphp-shim": "^0.22.0 || ^1.1"
     },
     "include-path": [
         "src/"

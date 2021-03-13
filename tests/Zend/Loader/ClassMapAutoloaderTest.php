@@ -31,7 +31,7 @@
  */
 class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -47,7 +47,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
         $this->loader = new Zend_Loader_ClassMapAutoloader();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();
@@ -102,13 +102,13 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
     {
         $this->loader->registerAutoloadMap(dirname(__FILE__) . '/_files/goodmap.php');
         $map = $this->loader->getAutoloadMap();
-        $this->assertInternalType('array', $map);
+        $this->assertIsArray($map);
         $this->assertCount(2, $map);
         // Just to make sure nothing changes after loading the same map again
         // (loadMapFromFile should just return)
         $this->loader->registerAutoloadMap(dirname(__FILE__) . '/_files/goodmap.php');
         $map = $this->loader->getAutoloadMap();
-        $this->assertInternalType('array', $map);
+        $this->assertIsArray($map);
         $this->assertCount(2, $map);
     }
 
@@ -122,7 +122,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
         $this->loader->registerAutoloadMap(dirname(__FILE__) . '/_files/goodmap.php');
 
         $test = $this->loader->getAutoloadMap();
-        $this->assertInternalType('array', $test);
+        $this->assertIsArray($test);
         $this->assertCount(3, $test);
         $this->assertNotEquals($map['Zend_Loader_StandardAutoloaderTest'], $test['Zend_Loader_StandardAutoloaderTest']);
     }
@@ -136,7 +136,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
         $maps = array($map, dirname(__FILE__) . '/_files/goodmap.php');
         $this->loader->registerAutoloadMaps($maps);
         $test = $this->loader->getAutoloadMap();
-        $this->assertInternalType('array', $test);
+        $this->assertIsArray($test);
         $this->assertCount(3, $test);
     }
 
@@ -148,7 +148,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
                 $this->loader->registerAutoloadMaps($test);
                 $this->fail('Should not register non-traversable arguments');
             } catch (Zend_Loader_Exception_InvalidArgumentException $e) {
-                $this->assertContains('array or implement Traversable', $e->getMessage());
+                $this->assertStringContainsString('array or implement Traversable', $e->getMessage());
             }
         }
     }

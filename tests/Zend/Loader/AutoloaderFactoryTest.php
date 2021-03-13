@@ -45,7 +45,7 @@ class_exists('PHPUnit\Framework\Constraint\Exception');
  */
 class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -65,7 +65,7 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
         $this->includePath = get_include_path();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_Loader_AutoloaderFactory::unregisterAutoloaders();
         // Restore original autoloaders
@@ -93,7 +93,7 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
         ));
         $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader('Zend_Loader_ClassMapAutoloader');
         $map    = $loader->getAutoloadMap();
-        $this->assertInternalType('array', $map);
+        $this->assertIsArray($map);
         $this->assertCount(2, $map);
     }
 
