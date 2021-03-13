@@ -212,7 +212,7 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
             }
             unset($parts[$key], $parts[$key - 1]);
             $parts = array_values($parts);
-        }, $parts);
+        });
 
         if (file_exists($realPath = 'phar:///' . implode('/', $parts))) {
             return $realPath;
