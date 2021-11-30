@@ -114,13 +114,11 @@ abstract class Zend_Loader_AutoloaderFactory
 
                 // unfortunately is_subclass_of is broken on some 5.3 versions
                 // additionally instanceof is also broken for this use case
-                if (version_compare(PHP_VERSION, '5.3.7', '>=')) {
-                    if (!is_subclass_of($class, 'Zend_Loader_SplAutoloader')) {
-                        throw new Zend_Loader_Exception_InvalidArgumentException(sprintf(
-                            'Autoloader class %s must implement Zend\\Loader\\SplAutoloader',
-                            $class
-                        ));
-                    }
+                if (!is_subclass_of($class, 'Zend_Loader_SplAutoloader')) {
+                    throw new Zend_Loader_Exception_InvalidArgumentException(sprintf(
+                        'Autoloader class %s must implement Zend\\Loader\\SplAutoloader',
+                        $class
+                    ));
                 }
 
                 if ($class === self::STANDARD_AUTOLOADER) {

@@ -458,10 +458,6 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testPrefixesEndingInBackslashDenoteNamespacedClasses()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped(__CLASS__ . '::' . __METHOD__ . ' requires PHP 5.3.0 or greater');
-            return;
-        }
         $loader = new Zend_Loader_PluginLoader(array());
         $loader->addPrefixPath('Zfns\\', dirname(__FILE__) . '/_files/Zfns');
         try {
@@ -495,10 +491,6 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testLoadClassesWithBackslashInName()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped(__CLASS__ . '::' . __METHOD__ . ' requires PHP 5.3.0 or greater');
-            return;
-        }
         $loader = new Zend_Loader_PluginLoader(array());
         $loader->addPrefixPath('Zfns\\', dirname(__FILE__) . '/_files/Zfns');
         try {
@@ -514,11 +506,6 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testLoadClassesWithBackslashAndUnderscoreInName()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped(__CLASS__ . '::' . __METHOD__ . ' requires PHP 5.3.0 or greater');
-            return;
-        }
-
         $loader = new Zend_Loader_PluginLoader(array());
         $loader->addPrefixPath('Zfns\\Foo_', dirname(__FILE__) . '/_files/Zfns/Foo');
 

@@ -133,9 +133,6 @@ class Zend_Loader_StandardAutoloaderTest extends PHPUnit\Framework\TestCase
 
     public function testAutoloadsNamespacedClasses()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped();
-        }
         $loader = new Zend_Loader_StandardAutoloader();
         $loader->registerNamespace('Zend\UnusualNamespace', dirname(__FILE__) . '/TestAsset');
         $loader->autoload('Zend\UnusualNamespace\NamespacedClass');
@@ -184,10 +181,6 @@ class Zend_Loader_StandardAutoloaderTest extends PHPUnit\Framework\TestCase
 
     public function testAutoloadsNamespacedClassesWithUnderscores()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped('Test only relevant for PHP >= 5.3.0');
-        }
-
         $loader = new Zend_Loader_StandardAutoloader();
         $loader->registerNamespace('ZendTest\UnusualNamespace', dirname(__FILE__) . '/TestAsset');
         $loader->autoload('ZendTest\UnusualNamespace\Name_Space\Namespaced_Class');

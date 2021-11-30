@@ -2,24 +2,21 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
+    ->exclude('tests/Zend/Loader/_files')
     ->files()
     ->in(__DIR__)
-    ->notName('ZFAutoloadParseError.php')
-    ->notName('AutoloaderClosure.php')
-    ->notName('Demo.php')
 ;
 
-return PhpCsFixer\Config::create()
-    ->setRiskyAllowed(true)
+$config = new PhpCsFixer\Config();
+return $config->setRiskyAllowed(true)
     ->setRules(array(
         '@PSR2'                     => true,
         '@PHPUnit60Migration:risky' => true,
-        '@PHPUnit84Migration:risky' => true,
-        'binary_operator_spaces'    => array('align_double_arrow' => true, 'align_equals' => true),
+        'binary_operator_spaces'    => array('operators' => array('=' => 'align', '=>' => 'align')),
         'single_quote'              => true,
         'array_syntax'              => array('syntax' => 'long'),
         'concat_space'              => array('spacing' => 'one'),
-        'psr0'                      => false
+        'psr_autoloading'           => array('dir' => 'src'),
     ))
     ->setUsingCache(true)
     ->setFinder($finder);

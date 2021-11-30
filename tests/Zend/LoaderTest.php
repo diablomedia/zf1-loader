@@ -132,7 +132,7 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
             Zend_Loader::loadClass('ClassNonexistent', $dir);
             $this->fail('Zend_Exception was expected but never thrown.');
         } catch (Zend_Exception $e) {
-            $this->assertRegExp('/file(.*)does not exist or class(.*)not found/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/file(.*)does not exist or class(.*)not found/i', $e->getMessage());
         }
     }
 
@@ -192,7 +192,7 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
             Zend_Loader::loadClass('/path/:to/@danger');
             $this->fail('Zend_Exception was expected but never thrown.');
         } catch (Zend_Exception $e) {
-            $this->assertRegExp('/security(.*)filename/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/security(.*)filename/i', $e->getMessage());
         }
     }
 
@@ -462,9 +462,6 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testLoadClassShouldAllowLoadingPhpNamespacedClasses()
     {
-        if (version_compare(PHP_VERSION, '5.3.0') < 0) {
-            $this->markTestSkipped('PHP < 5.3.0 does not support namespaces');
-        }
         Zend_Loader::loadClass('\Zfns\Foo', array(dirname(__FILE__) . '/Loader/_files'));
     }
 
@@ -474,10 +471,6 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testIsReadableShouldHonorStreamDefinitions()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped();
-        }
-
         $pharFile = dirname(__FILE__) . '/Loader/_files/Zend_LoaderTest.phar';
         $phar     = new Phar($pharFile, 0, 'zlt.phar');
         $incPath  = 'phar://zlt.phar'
@@ -492,10 +485,6 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
      */
     public function testIsReadableShouldNotLockWhenTestingForNonExistantFileInPhar()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped();
-        }
-
         $pharFile = dirname(__FILE__) . '/Loader/_files/Zend_LoaderTest.phar';
         $phar     = new Phar($pharFile, 0, 'zlt.phar');
         $incPath  = 'phar://zlt.phar'

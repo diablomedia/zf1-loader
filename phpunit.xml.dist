@@ -1,28 +1,22 @@
-<phpunit
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    beStrictAboutTestsThatDoNotTestAnything="true"
-    backupGlobals="true"
-    stderr="true"
-    colors="true">
-    <php>
-        <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_ENABLED" value="false" />
-        <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH" value="false" />
-        <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST" value="false" />
-        <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MAJOR" value="false" />
-        <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR" value="false" />
-        <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC" value="false" />
-        <includePath>./tests/</includePath>
-    </php>
-    <testsuites>
-        <testsuite name="default">
-            <directory>./tests</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" beStrictAboutTestsThatDoNotTestAnything="true" backupGlobals="true" stderr="true" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage includeUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+  </coverage>
+  <php>
+    <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_ENABLED" value="false"/>
+    <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH" value="false"/>
+    <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST" value="false"/>
+    <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MAJOR" value="false"/>
+    <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR" value="false"/>
+    <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC" value="false"/>
+    <includePath>./tests/</includePath>
+  </php>
+  <testsuites>
+    <testsuite name="default">
+      <directory>./tests</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

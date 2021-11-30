@@ -326,10 +326,6 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
 
     public function testAutoloadShouldNotSuppressParseErrorWhenSuppressNotFoundWarningsFlagIsDisabled()
     {
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $this->markTestSkipped(__METHOD__ . ' requires PHP version 7.0.0 or greater');
-        }
-
         $this->addTestIncludePath();
         $this->autoloader->suppressNotFoundWarnings(false);
         $this->autoloader->registerNamespace('ZendLoaderAutoloader');
@@ -343,9 +339,6 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
 
     public function testAutoloadShouldSuppressParseErrorWhenSuppressNotFoundWarningsFlagIsEnabled()
     {
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $this->markTestSkipped(__METHOD__ . ' requires PHP version 7.0.0 or greater');
-        }
         $this->addTestIncludePath();
         $this->autoloader->suppressNotFoundWarnings(true);
         $this->autoloader->registerNamespace('ZendLoaderAutoloader');
@@ -383,10 +376,6 @@ class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
      */
     public function testClosuresRegisteredWithAutoloaderShouldBeUtilized()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped(__METHOD__ . ' requires PHP version 5.3.0 or greater');
-        }
-
         $closure = require_once dirname(__FILE__) . '/_files/AutoloaderClosure.php';
         $this->autoloader->pushAutoloader($closure);
         $this->assertTrue(Zend_Loader_Autoloader::autoload('AutoloaderTest_AutoloaderClosure'));
