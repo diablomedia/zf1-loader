@@ -43,7 +43,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        if (file_exists($this->_includeCache)) {
+        if ($this->_includeCache && file_exists($this->_includeCache)) {
             unlink($this->_includeCache);
         }
         Zend_Loader_PluginLoader::setIncludeFileCache(null);
