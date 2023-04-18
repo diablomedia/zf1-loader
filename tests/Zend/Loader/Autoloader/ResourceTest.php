@@ -31,6 +31,12 @@
  */
 class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
 {
+    protected $loaders;
+    protected $includePath;
+    protected $autoloader;
+    protected $error;
+    protected $loader;
+
     public function setUp(): void
     {
         // Store original autoloaders
@@ -263,7 +269,7 @@ class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
             'model' => array('path' => 'models', 'namespace' => 'Model'),
         ));
         $object = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'model');
-        $this->assertTrue($object instanceof FooBar_Model_ZendLoaderAutoloaderResourceTest);
+        $this->assertInstanceOf(FooBar_Model_ZendLoaderAutoloaderResourceTest::class, $object);
     }
 
     public function testSuccessiveCallsToLoadSameResourceShouldReturnSameObject()
@@ -272,7 +278,7 @@ class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
             'form' => array('path' => 'forms', 'namespace' => 'Form'),
         ));
         $object = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
-        $this->assertTrue($object instanceof FooBar_Form_ZendLoaderAutoloaderResourceTest);
+        $this->assertInstanceOf(FooBar_Form_ZendLoaderAutoloaderResourceTest::class, $object);
         $test = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
         $this->assertSame($object, $test);
     }
@@ -287,7 +293,7 @@ class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
             'service' => array('path' => 'services', 'namespace' => 'Service'),
         ));
         $test = $loader->load('ZendLoaderAutoloaderResourceTest', 'service');
-        $this->assertTrue($test instanceof Service_ZendLoaderAutoloaderResourceTest);
+        $this->assertInstanceOf(Service_ZendLoaderAutoloaderResourceTest::class, $test);
     }
 
     public function testPassingClassOfDifferentNamespaceToAutoloadShouldReturnFalse()
@@ -335,7 +341,7 @@ class Zend_Loader_Autoloader_ResourceTest extends PHPUnit\Framework\TestCase
             'model' => array('path' => 'models', 'namespace' => 'Model'),
         ));
         $test = $this->loader->getModel('ZendLoaderAutoloaderResourceMethodOverloading');
-        $this->assertTrue($test instanceof FooBar_Model_ZendLoaderAutoloaderResourceMethodOverloading);
+        $this->assertInstanceOf(FooBar_Model_ZendLoaderAutoloaderResourceMethodOverloading::class, $test);
     }
 
     /**

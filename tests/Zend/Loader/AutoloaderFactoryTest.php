@@ -45,6 +45,9 @@ class_exists('PHPUnit\Framework\Constraint\Exception');
  */
 class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
 {
+    protected $loaders;
+    protected $includePath;
+
     public function setUp(): void
     {
         // Store original autoloaders
@@ -169,14 +172,14 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
             ),
         ));
         $autoloader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader('Zend_Loader_StandardAutoloader');
-        $this->assertTrue($autoloader instanceof Zend_Loader_StandardAutoloader);
+        $this->assertInstanceOf(Zend_Loader_StandardAutoloader::class, $autoloader);
     }
 
     public function testDefaultAutoloader()
     {
         Zend_Loader_AutoloaderFactory::factory();
         $autoloader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader('Zend_Loader_StandardAutoloader');
-        $this->assertTrue($autoloader instanceof Zend_Loader_StandardAutoloader);
+        $this->assertInstanceOf(Zend_Loader_StandardAutoloader::class, $autoloader);
         $this->assertCount(1, Zend_Loader_AutoloaderFactory::getRegisteredAutoloaders());
     }
 
@@ -211,7 +214,7 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
         $loaders = Zend_Loader_AutoloaderFactory::getRegisteredAutoloaders();
         $this->assertCount(1, $loaders);
         $loader = array_shift($loaders);
-        $this->assertTrue($loader instanceof Zend_Loader_StandardAutoloader);
+        $this->assertInstanceOf(Zend_Loader_StandardAutoloader::class, $loader);
 
         $test  = array($loader, 'autoload');
         $found = false;

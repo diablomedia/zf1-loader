@@ -10,9 +10,11 @@
     "license": "BSD-3-Clause",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4 || ~8.0.0 || ~8.1.0",
-        "diablomedia/zendframework1-exception": "^1.0.0",
-        "diablomedia/zendframework1-config": "^1.0.0 || ^2.0.0"
+        "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0",
+        "diablomedia/zendframework1-exception": "dev-master as 1.0.4",
+        "diablomedia/zendframework1-config": "dev-php-82 as 2.0.0",
+        "diablomedia/zendframework1-json": "dev-php-82 as 1.0.6",
+        "diablomedia/zendframework1-server": "dev-php-82 as 1.0.2"
     },
     "autoload": {
         "psr-0": {
@@ -29,8 +31,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.10",
-        "phpstan/phpstan": "1.8.0",
-        "friendsofphp/php-cs-fixer": "3.6.0",
+        "phpstan/phpstan": "1.10.13",
+        "friendsofphp/php-cs-fixer": "3.16.0",
         "maglnet/composer-require-checker": "^3.0.0",
         "phpro/grumphp-shim": "^1.5.0"
     },
@@ -47,5 +49,10 @@
         "test-with-coverage": "phpunit --coverage-clover=clover.xml",
         "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi",
         "style-check": "php-cs-fixer fix --dry-run -vv"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true
+        }
     }
 }

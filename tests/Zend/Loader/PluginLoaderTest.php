@@ -34,6 +34,9 @@
 class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
 {
     protected $_includeCache;
+    protected $key;
+    protected $libPath;
+    protected $testLibPath;
 
     /**
      * Sets up the fixture, for example, open a network connection.
@@ -480,7 +483,7 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
             $loader->removePrefixPath('My_Namespace_', 'ZF9721');
             $this->fail();
         } catch (Exception $e) {
-            $this->assertTrue($e instanceof Zend_Loader_PluginLoader_Exception);
+            $this->assertInstanceOf(Zend_Loader_PluginLoader_Exception::class, $e);
             $this->assertStringContainsString('Prefix My_Namespace_ / Path ZF9721', $e->getMessage());
         }
         $this->assertCount(1, $loader->getPaths('My_Namespace_'));

@@ -31,6 +31,15 @@
  */
 class Zend_Loader_AutoloaderMultiVersionTest extends PHPUnit\Framework\TestCase
 {
+    protected $loaders;
+    protected $includePath;
+    protected $path;
+    protected $latest;
+    protected $latestMajor;
+    protected $latestMinor;
+    protected $specific;
+    protected $autoloader;
+
     public function setUp(): void
     {
         // Store original autoloaders

@@ -31,6 +31,11 @@
  */
 class Zend_LoaderTest extends PHPUnit\Framework\TestCase
 {
+    protected $errorHandler;
+    protected $error;
+    protected $includePath;
+    protected $loaders;
+
     public function setUp(): void
     {
         // Store original autoloaders
@@ -243,7 +248,7 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
         $this->setErrorHandler();
         $this->assertEquals('Zend_Db_Profiler_ExceptionTest', Zend_Loader::autoload('Zend_Db_Profiler_ExceptionTest'));
         $this->assertStringContainsString('deprecated', $this->error);
-        $this->error = null;
+        $this->error = '';
         $this->assertEquals('Zend_Auth_Storage_InterfaceTest', Zend_Loader::autoload('Zend_Auth_Storage_InterfaceTest'));
         $this->assertStringContainsString('deprecated', $this->error);
     }
@@ -355,8 +360,9 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
         );
 
         // and we verify it is the correct type
-        $this->assertTrue(
-            $obj instanceof Zend_Loader_AutoloadableClass,
+        $this->assertInstanceOf(
+            Zend_Loader_AutoloadableClass::class,
+            $obj,
             'Expected to instantiate Zend_Loader_AutoloadableClass, got ' . get_class($obj)
         );
 

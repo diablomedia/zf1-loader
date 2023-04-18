@@ -31,6 +31,10 @@
  */
 class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
 {
+    protected $loaders;
+    protected $includePath;
+    protected $loader;
+
     public function setUp(): void
     {
         // Store original autoloaders
