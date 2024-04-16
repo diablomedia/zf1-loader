@@ -118,7 +118,7 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
     {
         $dirs = array('.');
         try {
-            Zend_Loader::loadClass('Zend_VersionTest', $dirs);
+            Zend_Loader::loadClass('Zend_VersionClass', $dirs);
             $this->assertTrue(true);
         } catch (Zend_Exception $e) {
             $this->fail('Loading from dot should not fail');
@@ -237,7 +237,7 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
         $this->assertFalse(Zend_Loader::isReadable(__FILE__ . '.foobaar'));
 
         // test that a file in include_path gets loaded, see ZF-2985
-        $this->assertTrue(Zend_Loader::isReadable('Zend/Controller/FrontTest.php'), get_include_path());
+        $this->assertTrue(Zend_Loader::isReadable('Zend/Controller/FrontClass.php'), get_include_path());
     }
 
     /**
@@ -246,10 +246,10 @@ class Zend_LoaderTest extends PHPUnit\Framework\TestCase
     public function testLoaderAutoloadLoadsValidClasses()
     {
         $this->setErrorHandler();
-        $this->assertEquals('Zend_Db_Profiler_ExceptionTest', Zend_Loader::autoload('Zend_Db_Profiler_ExceptionTest'));
+        $this->assertEquals('Zend_Db_Profiler_ExceptionClass', Zend_Loader::autoload('Zend_Db_Profiler_ExceptionClass'));
         $this->assertStringContainsString('deprecated', $this->error);
         $this->error = '';
-        $this->assertEquals('Zend_Auth_Storage_InterfaceTest', Zend_Loader::autoload('Zend_Auth_Storage_InterfaceTest'));
+        $this->assertEquals('Zend_Auth_Storage_InterfaceClass', Zend_Loader::autoload('Zend_Auth_Storage_InterfaceClass'));
         $this->assertStringContainsString('deprecated', $this->error);
     }
 

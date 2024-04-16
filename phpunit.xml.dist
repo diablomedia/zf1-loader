@@ -1,10 +1,5 @@
 <?xml version="1.0"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" beStrictAboutTestsThatDoNotTestAnything="true" backupGlobals="true" stderr="true" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage includeUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">./src</directory>
-    </include>
-  </coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" beStrictAboutTestsThatDoNotTestAnything="true" backupGlobals="true" stderr="true" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache">
   <php>
     <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_ENABLED" value="false"/>
     <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH" value="false"/>
@@ -12,11 +7,16 @@
     <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MAJOR" value="false"/>
     <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR" value="false"/>
     <const name="TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC" value="false"/>
-    <includePath>./tests/</includePath>
+    <includePath>tests/Zend:tests/</includePath>
   </php>
   <testsuites>
     <testsuite name="default">
       <directory>./tests</directory>
     </testsuite>
   </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+  </source>
 </phpunit>
